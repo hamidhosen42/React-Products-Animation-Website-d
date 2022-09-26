@@ -2,4 +2,6 @@
   list-style: none;
   font-size: 20px;
   cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
 }

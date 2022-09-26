@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
-const ReactModal = (props) => {
-  //   console.log(props.product);
-  const { title, image, price, description } = props?.product || {};
+const ReactModal = ({product}) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -16,10 +16,11 @@ const ReactModal = (props) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <img className="w-50" src={image} alt="" />
-          <Modal.Title>{title}</Modal.Title>
+          <Modal.Title>{product.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{description}</Modal.Body>
+        <img className='w-50 m-auto' src={product.image} alt="" />
+        <p className="m-4">{product.description}</p>
+        <h3 className="ms-4">PRICE : {product.price}</h3>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import SingelProduct from "../SingelProduct/SingelProduct";
-import "./AllProducts.css";
 
-const AllProducts = (props) => {
-  const { setCartCount } = props;
-  const [products, setProducts] = useState([]);
+const AllProducts = ({ setCartCount,setCardCounts }) => {
+  const [products, setProsducts] = useState([]);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => setProsducts(data));
   }, [products]);
 
   console.log(products);
+
   return (
     <div>
-      <h1>ALL products</h1>
-
-      <div className="row container">
-        {products.map((pd) => (
+      <h1 className="text-success mt-3 mb-3">All PRODUCTS</h1>
+      <div className="row container w-100 m-auto">
+        {products.map((product) => (
           <SingelProduct
             setCartCount={setCartCount}
-            key={pd.id}
-            product={pd}
+            setCardCounts={setCardCounts}
+            product={product}
+            key={product.id}
           ></SingelProduct>
         ))}
       </div>
